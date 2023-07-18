@@ -64,7 +64,17 @@ const userCtrl = {
         }
     },
 
-    update: async(req, res)=>{},
+    update: async(req, res)=>{
+        const { email, firstName, lastName, phoneNumber } = req.body
+
+        const updatedUser = await User.findOneAndUpdate({ email }, { firstName, lastName, phoneNumber }, { new: true })
+
+        return res.status(200).json({
+            message: "successful",
+            updatedUser
+        })
+
+    },
 
     deposit: async(req, res)=>{},
 
