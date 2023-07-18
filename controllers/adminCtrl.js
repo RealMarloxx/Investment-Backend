@@ -58,6 +58,19 @@ const adminCtrl = {
 
     },
 
+    updateUser: async (req, res)=>{
+
+        const { email, firstName, lastName } = req.body
+
+        const updatedUser = await User.findOneAndUpdate({email}, {firstName, lastName}, {new : true})
+
+        return res.status(200).json({
+            message: "succesful",
+            updatedUser
+        })
+
+    },
+
     deleteUser: async (req, res)=>{
 
         const { id } = req.params
