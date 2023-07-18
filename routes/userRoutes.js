@@ -13,6 +13,10 @@ router.post('/signup', validateUserRegistration, userCtrl.registration)
 
 router.post('/signin', validateUserLogin, userCtrl.login)
 
+//User Update
+
+router.patch('/update', userCtrl.update)
+
 
 
 module.exports = router

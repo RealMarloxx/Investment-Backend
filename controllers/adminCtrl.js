@@ -71,6 +71,41 @@ const adminCtrl = {
 
     },
 
+    activateUser: async (req, res)=>{
+
+        try {
+
+            const { email } = req.body
+
+            const user = await User.findOneAndUpdate({ email }, { isActive: true }, {new: true})
+
+            return res.status(200).json({
+                message: 'Activated',
+                user
+            })            
+        } catch (error) {
+            res.status(500).json({ message: error.message})
+        }
+    },
+
+    deActivateUser: async (req, res)=>{
+
+        try {
+
+            const { email } = req.body
+
+            const user = await User.findOneAndUpdate({ email }, { isActive: false }, {new: true})
+
+            return res.status(200).json({
+                message: 'Deactivated',
+                user
+            })            
+        } catch (error) {
+            res.status(500).json({ message: error.message})
+        }
+        
+    },
+
     deleteUser: async (req, res)=>{
 
         const { id } = req.params
